@@ -3,9 +3,15 @@ class Date_Extractor:
     def __init__(self):
         self.dates = []
 
-    def add_date(self, new_date):
+    def clear_dates(self):
+        self.dates = []
+
+    def extract_data(self, new_date):
         if self.is_date(new_date):
             self.dates.append(new_date)
+
+    def get_data(self):
+        return self.dates
 
     def is_date(self, str_list):
 
