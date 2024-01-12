@@ -1,19 +1,28 @@
-class Date_Extractor:
+import Data_Manager as dm
+from scan_doc import ignore_char
+class Date_Extractor(dm.Data_Manager):
 
-    def __init__(self):
-        self.dates = []
+    def __init__(self, keywords):
+        super().__init__(keywords)
 
-    def clear_dates(self):
-        self.dates = []
+    def add_data(self, subarray):
 
-    def extract_data(self, new_date):
-        if self.is_date(new_date):
-            self.dates.append(new_date)
+        word  = ""
+        for a in subarray:
 
-    def get_data(self):
-        return self.dates
+            if ignore_char(a):
+                continue
 
-    def is_date(self, str_list):
+            if a == " ":
+
+                if self.valid_data(word):
+                    self.data.append(word)
+
+                word = ""
+            else:
+                word += a
+
+    def valid_data(self, str_list):
 
         if str_list == None:
             return False

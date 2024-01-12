@@ -38,32 +38,26 @@ def sub_search(center_index, radius, text_array, manager):
 
     subarray = text_array[start:end]
 
-    print("")
-    print(">>> Start of subarray <<<")
-    print(subarray)
-    print(">>> end of subarray <<<")
-    print("")
+    manager.add_data(subarray)
 
-    i = 0
-    word = ""
+    # for t in subarray:
+    #
+    #     if ignore_char(t):
+    #         continue
+    #
+    #     if t == " ":
+    #
+    #         manager.add_data(word)
+    #
+    #         word = ""
+    #
+    #     else:
+    #         word += t
 
-    for t in subarray:
-
-        if ignore_char(t):
-            continue
-
-        if t == " ":
-
-            manager.extract_data(word)
-
-            word = ""
-
-        else:
-            word += t
 
     print(manager.get_data())
 
-def scan_doc(doc_text, kws, manager):
+def scan_doc(doc_text, managers):
     word = ""
     i = 0
 
@@ -74,11 +68,12 @@ def scan_doc(doc_text, kws, manager):
 
         if t == " ":
             if word != "":
-                # print(word, i)
 
-                if is_keyword(word, kws):
-                    print(word, " is a keyword ", " index ", i)
-                    sub_search(i, 50, doc_text, manager)
+                for mag in managers:
+                    if mag.keyword_match(word):
+                        # print("Keyword match found for ", word, " Manager: ", mag)
+                        sub_search(i, 50, doc_text, mag)
+                        break
 
                 word = ""
 
