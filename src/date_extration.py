@@ -5,7 +5,7 @@ class Date_Extractor(dm.Data_Manager):
     def __init__(self, keywords):
         super().__init__(keywords)
 
-    def add_data(self, subarray):
+    def add_data(self, subarray, keyword):
 
         word  = ""
         for a in subarray:
@@ -16,7 +16,7 @@ class Date_Extractor(dm.Data_Manager):
             if a == " ":
 
                 if self.valid_data(word):
-                    self.data.append(word)
+                    self.data.append({ keyword : word })
 
                 word = ""
             else:

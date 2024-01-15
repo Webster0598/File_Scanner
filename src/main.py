@@ -18,7 +18,7 @@ text = pytesseract.image_to_string(img)
 date_keywords = ["Birth:"]
 date_manager = Date_Extractor(date_keywords)
 
-phone_keywords = ["Phone:"]
+phone_keywords = ["Phone:", "Fax:"]
 phone_manager = Phone_Extractor(phone_keywords)
 
 managers = [date_manager, phone_manager]
@@ -26,8 +26,11 @@ managers = [date_manager, phone_manager]
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # print(text[:-1])
 
+    # test1 = "(510) 922-8611"
+    # test2 = "(510) 922-8611abc (510) 922-8611"
+    # test3 = "(510) 92k2-8611abc (510) 922-8611"
+    # phone_manager.add_data(test1)
     sd.scan_doc(text, managers)
 
 

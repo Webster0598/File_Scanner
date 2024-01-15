@@ -24,7 +24,7 @@ def is_keyword(search_word, kw_array):
 
     return False
 
-def sub_search(center_index, radius, text_array, manager):
+def sub_search(center_index, radius, text_array, manager, keyword):
 
     start = center_index - radius
     end = center_index + radius
@@ -38,23 +38,10 @@ def sub_search(center_index, radius, text_array, manager):
 
     subarray = text_array[start:end]
 
-    manager.add_data(subarray)
+    manager.add_data(subarray, keyword)
 
-    # for t in subarray:
-    #
-    #     if ignore_char(t):
-    #         continue
-    #
-    #     if t == " ":
-    #
-    #         manager.add_data(word)
-    #
-    #         word = ""
-    #
-    #     else:
-    #         word += t
-
-
+    print()
+    print(subarray)
     print(manager.get_data())
 
 def scan_doc(doc_text, managers):
@@ -72,7 +59,7 @@ def scan_doc(doc_text, managers):
                 for mag in managers:
                     if mag.keyword_match(word):
                         # print("Keyword match found for ", word, " Manager: ", mag)
-                        sub_search(i, 50, doc_text, mag)
+                        sub_search(i, 50, doc_text, mag, word)
                         break
 
                 word = ""
