@@ -1,5 +1,5 @@
 import Data_Manager as dm
-class Phone_Extractor(dm.Data_Manager):
+class Phone_Manager(dm.Data_Manager):
 
     def __init__(self, keywords):
         super().__init__(keywords)
@@ -99,9 +99,12 @@ class Phone_Extractor(dm.Data_Manager):
         smallest_delta = 999999
         smallest_key = -1
 
-        for key, value in phones_dic:
+        for key, value in phones_dic.items():
             delta = abs(subarray_midpoint - key)
 
             if delta < smallest_delta:
                 smallest_key = key
                 smallest_delta = delta
+
+        if smallest_key != -1:
+            self.data.append({keyword : phones_dic[smallest_key]})

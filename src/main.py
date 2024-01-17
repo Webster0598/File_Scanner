@@ -1,7 +1,8 @@
 from pytesseract import pytesseract
 from PIL import Image
-from src.date_extration import Date_Extractor
-from Phone_Extractor import Phone_Extractor
+from src.Date_Manager import Date_Manager
+from Phone_Manager import Phone_Manager
+from Name_Manager import Name_Manager
 import os
 import scan_doc as sd
 
@@ -16,10 +17,13 @@ text = pytesseract.image_to_string(img)
 
 
 date_keywords = ["Birth:"]
-date_manager = Date_Extractor(date_keywords)
+date_manager = Date_Manager(date_keywords)
 
 phone_keywords = ["Phone:", "Fax:"]
-phone_manager = Phone_Extractor(phone_keywords)
+phone_manager = Phone_Manager(phone_keywords)
+
+name_keywords = ["Patient:"]
+name_manager = Name_Manager(name_keywords)
 
 managers = [date_manager, phone_manager]
 
@@ -31,7 +35,9 @@ if __name__ == '__main__':
     # test2 = "(510) 922-8611abc (510) 922-8611"
     # test3 = "(510) 92k2-8611abc (510) 922-8611"
     # phone_manager.add_data(test1)
-    sd.scan_doc(text, managers)
+    # print(sd.scan_doc(text, managers))
+
+    name_manager.test()
 
 
 

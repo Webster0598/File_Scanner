@@ -40,13 +40,15 @@ def sub_search(center_index, radius, text_array, manager, keyword):
 
     manager.add_data(subarray, keyword)
 
-    print()
-    print(subarray)
-    print(manager.get_data())
+    # print()
+    # print(subarray)
+    # print(manager.get_data())
 
 def scan_doc(doc_text, managers):
     word = ""
     i = 0
+
+    doc_text = doc_text.replace("\n", "")
 
     for t in doc_text:
 
@@ -68,3 +70,10 @@ def scan_doc(doc_text, managers):
             word += t
 
         i += 1
+
+    doc_data = []
+
+    for mag in managers:
+        doc_data.append(mag.data)
+
+    return doc_data
