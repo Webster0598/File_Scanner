@@ -6,10 +6,11 @@ class Data_Manager:
     def keyword_match(self, word):
 
         for k in self.keywords:
-            if k == word:
-                return True
+            if k in word:
+                # print("Match", k, word)
+                return k
 
-        return False
+        return None
 
     def get_data(self):
         return self.data

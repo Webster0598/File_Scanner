@@ -49,6 +49,7 @@ def scan_doc(doc_text, managers):
     i = 0
 
     doc_text = doc_text.replace("\n", "")
+    # print(doc_text)
 
     for t in doc_text:
 
@@ -59,9 +60,11 @@ def scan_doc(doc_text, managers):
             if word != "":
 
                 for mag in managers:
-                    if mag.keyword_match(word):
+                    kw = mag.keyword_match(word)
+
+                    if kw:
                         # print("Keyword match found for ", word, " Manager: ", mag)
-                        sub_search(i, 50, doc_text, mag, word)
+                        sub_search(i, 50, doc_text, mag, kw)
                         break
 
                 word = ""

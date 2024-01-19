@@ -16,16 +16,16 @@ img = Image.open(abs_file_path)
 text = pytesseract.image_to_string(img)
 
 
-date_keywords = ["Birth:"]
+date_keywords = ["Birth"]
 date_manager = Date_Manager(date_keywords)
 
-phone_keywords = ["Phone:", "Fax:"]
+phone_keywords = ["Phone", "Fax"]
 phone_manager = Phone_Manager(phone_keywords)
 
-name_keywords = ["Patient:"]
+name_keywords = ["Patient", "Physician"]
 name_manager = Name_Manager(name_keywords)
 
-managers = [date_manager, phone_manager]
+managers = [date_manager, phone_manager, name_manager]
 
 
 # Press the green button in the gutter to run the script.
@@ -35,9 +35,8 @@ if __name__ == '__main__':
     # test2 = "(510) 922-8611abc (510) 922-8611"
     # test3 = "(510) 92k2-8611abc (510) 922-8611"
     # phone_manager.add_data(test1)
-    # print(sd.scan_doc(text, managers))
+    print(sd.scan_doc(text, managers))
 
-    name_manager.test()
 
 
 
