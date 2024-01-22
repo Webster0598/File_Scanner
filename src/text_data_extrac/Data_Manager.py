@@ -1,4 +1,4 @@
-class Data_Manager:
+class Data_Manager_Class:
     def __init__(self, keywords):
         self.keywords = keywords
         self.data = []

@@ -1,10 +1,10 @@
 from pytesseract import pytesseract
 from PIL import Image
-from src.Date_Manager import Date_Manager
-from Phone_Manager import Phone_Manager
-from Name_Manager import Name_Manager
+import text_data_extrac.scan_doc as sd
+from text_data_extrac.Date_Manager import Date_Manager_Class
+from text_data_extrac.Phone_Manager import Phone_Manager_Class
+from text_data_extrac.Name_Manager import Name_Manager_Class
 import os
-import scan_doc as sd
 
 script_dir = os.path.dirname(__file__)
 rel_path = "../sample_docs/doc_example.png"
@@ -17,13 +17,13 @@ text = pytesseract.image_to_string(img)
 
 
 date_keywords = ["Birth"]
-date_manager = Date_Manager(date_keywords)
+date_manager = Date_Manager_Class(date_keywords)
 
 phone_keywords = ["Phone", "Fax"]
-phone_manager = Phone_Manager(phone_keywords)
+phone_manager = Phone_Manager_Class(phone_keywords)
 
 name_keywords = ["Patient", "Physician"]
-name_manager = Name_Manager(name_keywords)
+name_manager = Name_Manager_Class(name_keywords)
 
 managers = [date_manager, phone_manager, name_manager]
 
@@ -31,11 +31,8 @@ managers = [date_manager, phone_manager, name_manager]
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    # test1 = "(510) 922-8611"
-    # test2 = "(510) 922-8611abc (510) 922-8611"
-    # test3 = "(510) 92k2-8611abc (510) 922-8611"
-    # phone_manager.add_data(test1)
-    print(sd.scan_doc(text, managers))
+    text_data = sd.scan_doc(text, managers)
+    print(text_data)
 
 
 

@@ -1,10 +1,12 @@
-import Data_Manager as dm
-import enchant
+from text_data_extrac.Data_Manager import Data_Manager_Class
+# import enchant
 # import nltk
+# from nltk.tag.stanford import StanfordNERTagger
+
 # nltk.download('popular') Installs datasets/models for nltk to work.
 # Only needs to be runs once. Probably should be ran from command line instead of code.
 
-class Name_Manager(dm.Data_Manager):
+class Name_Manager_Class(Data_Manager_Class):
 
     def __init__(self, keywords):
         super().__init__(keywords)
@@ -48,11 +50,6 @@ class Name_Manager(dm.Data_Manager):
 
         if self.is_capitalized(word):
             proper_noun.append(word)
-
-        d = enchant.Dict("en_US")
-
-        for p in proper_noun:
-            print(p, d.check(p))
 
         # print(proper_noun, "keyword_index", keyword_index)
 

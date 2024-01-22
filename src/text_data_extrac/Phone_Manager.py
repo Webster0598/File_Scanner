@@ -1,5 +1,5 @@
-import Data_Manager as dm
-class Phone_Manager(dm.Data_Manager):
+from text_data_extrac.Data_Manager import Data_Manager_Class
+class Phone_Manager_Class(Data_Manager_Class):
 
     def __init__(self, keywords):
         super().__init__(keywords)

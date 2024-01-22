@@ -1,6 +1,6 @@
-import Data_Manager as dm
-from scan_doc import ignore_char
-class Date_Manager(dm.Data_Manager):
+from text_data_extrac.Data_Manager import Data_Manager_Class
+from text_data_extrac.scan_doc import ignore_char
+class Date_Manager_Class(Data_Manager_Class):
 
     def __init__(self, keywords):
         super().__init__(keywords)
