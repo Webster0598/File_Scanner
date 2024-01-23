@@ -5,7 +5,7 @@ class Phone_Manager_Class(Data_Manager_Class):
         super().__init__(keywords)
 
         self.max_phone_digits = 10
-        self. extra_phone_char = ["(", ")", "-"]
+        self. extra_phone_char = ["(", ")", "-", "+"]
 
 
     def is_extra_phone_char(self, arg):
@@ -57,6 +57,8 @@ class Phone_Manager_Class(Data_Manager_Class):
         phones_dic = {}
         i = 0
 
+        print(subarray)
+
         for s in subarray:
 
             if s == " ":
@@ -77,7 +79,7 @@ class Phone_Manager_Class(Data_Manager_Class):
                 elif s.isdigit():
                     phone += s
                     count += 1
-
+                    # print(phone)
                     if count == self.max_phone_digits:
 
                         if self.contains_extra_phone_char(phone):

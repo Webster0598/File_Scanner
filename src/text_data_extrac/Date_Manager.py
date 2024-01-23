@@ -8,6 +8,7 @@ class Date_Manager_Class(Data_Manager_Class):
     def add_data(self, subarray, keyword):
 
         word  = ""
+
         for a in subarray:
 
             if ignore_char(a):
@@ -21,6 +22,9 @@ class Date_Manager_Class(Data_Manager_Class):
                 word = ""
             else:
                 word += a
+
+        if self.valid_data(word):
+            self.data.append({keyword: word})
 
     def valid_data(self, str_list):
 
