@@ -30,13 +30,14 @@ def sub_search(center_index, radius, text_array, manager, keyword):
     end = center_index + radius
 
     if start < 0:
-        print("Error: Search out of lower bounds")
-        return None
-    if end > len(text_array):
-        print("Error: Search out of upper bounds")
-        return None
+        start = 0
+
+    if end > len(text_array) :
+        end = len(text_array)
 
     subarray = text_array[start:end]
+
+    # print("Subarray: ", subarray)
 
     manager.add_data(subarray, keyword)
 
