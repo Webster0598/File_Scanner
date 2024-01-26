@@ -4,6 +4,7 @@ import text_data_extrac.scan_doc as sd
 from text_data_extrac.Date_Manager import Date_Manager_Class
 from text_data_extrac.Phone_Manager import Phone_Manager_Class
 from text_data_extrac.Name_Manager import Name_Manager_Class
+import web_browsing.web_browser as wb
 import os
 
 script_dir = os.path.dirname(__file__)
@@ -31,8 +32,10 @@ managers = [date_manager, phone_manager, name_manager]
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    text_data = sd.scan_doc(text, managers)
-    print(text_data)
+    # text_data = sd.scan_doc(text, managers)
+    # print(text_data)
+
+    wb.start()
 
 
 
