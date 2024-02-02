@@ -26,9 +26,14 @@ def start():
             driver.switch_to.window(window_handle)
             break
 
-    print(driver.current_url)
-    email_input = driver.find_element(by=By.CLASS_NAME, value="loginInput")
-    print(email_input)
+    email_input = driver.find_element(by=By.ID, value="inputUsername")
+    email_input.send_keys("abc")
+
+    pswd_input = driver.find_element(by=By.ID, value="inputPswd")
+    pswd_input.send_keys("123")
+
+    login_button = driver.find_element(by=By.ID, value="loginButton")
+    print(login_button)
 
     time.sleep(3)
     driver.quit()
