@@ -1,5 +1,5 @@
-from text_data_extrac.Data_Manager import Data_Manager_Class
-from text_data_extrac.scan_doc import ignore_char
+from src.text_data_extrac.Data_Manager import Data_Manager_Class
+from src.text_data_extrac.scan_doc import ignore_char
 class Date_Manager_Class(Data_Manager_Class):
 
     def __init__(self, keywords):

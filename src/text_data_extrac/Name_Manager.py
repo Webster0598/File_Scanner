@@ -1,4 +1,4 @@
-from text_data_extrac.Data_Manager import Data_Manager_Class
+from src.text_data_extrac.Data_Manager import Data_Manager_Class
 # import enchant
 # import nltk
 # from nltk.tag.stanford import StanfordNERTagger

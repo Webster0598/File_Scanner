@@ -1,4 +1,4 @@
-from text_data_extrac.Data_Manager import Data_Manager_Class
+from src.text_data_extrac.Data_Manager import Data_Manager_Class
 import re
 
 class Phone_Manager_Class(Data_Manager_Class):
@@ -6,6 +6,7 @@ class Phone_Manager_Class(Data_Manager_Class):
     def __init__(self, keywords):
         super().__init__(keywords)
 
+        self.reg_exps = [r'\+\d\d\d\d\d\d\d\d\d\d\d', r'\d\d\d-\d\d\d\d-\d\d\d\d']
         self.max_phone_digits = 10
         self. extra_phone_char = ["(", ")", "-", "+"]
 
@@ -63,9 +64,11 @@ class Phone_Manager_Class(Data_Manager_Class):
 
     def add_data(self, subarray, keyword):
 
+        for r in self.reg_exps:
+            self.find_rex_expprestion(r, subarray, keyword)
 
-        self.find_rex_expprestion(r'\+\d\d\d\d\d\d\d\d\d\d\d', subarray, keyword)
-        self.find_rex_expprestion(r'\d\d\d-\d\d\d\d-\d\d\d\d', subarray, keyword)
+        # self.find_rex_expprestion(r'\+\d\d\d\d\d\d\d\d\d\d\d', subarray, keyword)
+        # self.find_rex_expprestion(r'\d\d\d-\d\d\d\d-\d\d\d\d', subarray, keyword)
 
                 # extract_numbers = False
         # count = 0
