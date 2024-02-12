@@ -8,6 +8,7 @@ import os
 import src.utility.pdf_convertion as pc
 from os.path import exists
 from src.utility.util import file_ending
+import web_browsing.web_browser as wb
 
 script_dir = os.path.dirname(__file__)
 rel_path = "../sample_docs/doc_example.png"
@@ -27,9 +28,7 @@ name_manager = Name_Manager_Class(name_keywords)
 
 managers = [phone_manager]
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+def start(abs_file_path):
 
     if exists(abs_file_path):
 
@@ -56,7 +55,12 @@ if __name__ == '__main__':
     else:
         print("Error: ", abs_file_path, " can not be found")
 
-    # wb.start()
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+
+    # start(abs_file_path)
+    # wb.read_login_date("login/login_data.txt")
+    wb.start()
 
 
 
