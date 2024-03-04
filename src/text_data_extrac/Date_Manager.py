@@ -6,6 +6,8 @@ class Date_Manager_Class(Data_Manager_Class):
         super().__init__(keywords)
 
     def add_data(self, subarray, keyword):
+        # Checks each word in a string array to see if it is a date.
+        # If it is, then that data is stored within the class.
 
         word  = ""
 
@@ -27,6 +29,7 @@ class Date_Manager_Class(Data_Manager_Class):
             self.data.append({keyword: word})
 
     def valid_data(self, str_list):
+        # Checks if a given string is a date.
 
         if str_list == None:
             return False

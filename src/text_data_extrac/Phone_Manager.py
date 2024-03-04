@@ -13,6 +13,8 @@ class Phone_Manager_Class(Data_Manager_Class):
 
     def is_extra_phone_char(self, arg):
 
+        # Checks if a string is a phone character, such as "()" in
+        # (510) 999- 9999
         for c in self.extra_phone_char:
 
             if c == arg:
@@ -21,6 +23,7 @@ class Phone_Manager_Class(Data_Manager_Class):
         return False
 
     def contains_extra_phone_char(self, arg):
+        # Check each letter in a string array if is a phone character.
 
         for a in arg:
             if a in self.extra_phone_char:
@@ -29,6 +32,7 @@ class Phone_Manager_Class(Data_Manager_Class):
         return False
 
     def valid_data(self, str_list):
+        # Checks if a string is a phone number.
 
         phone = ""
         count = 0
@@ -52,6 +56,8 @@ class Phone_Manager_Class(Data_Manager_Class):
 
 
     def find_rex_expprestion(self, reg, subarray, keyword):
+        # Checks is a string matches pattern of a phone number
+        # Example: XXX - XXXX - XXXX or +XXXXXXXXXXX or (XXX) XXXX - XXXX
 
         phoneNumRegex = re.compile(reg)
         match = phoneNumRegex.search(subarray)
@@ -63,6 +69,8 @@ class Phone_Manager_Class(Data_Manager_Class):
 
 
     def add_data(self, subarray, keyword):
+
+        # Adds phone number to class data if there is reg exp match.
 
         for r in self.reg_exps:
             self.find_rex_expprestion(r, subarray, keyword)

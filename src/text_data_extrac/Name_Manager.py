@@ -12,6 +12,7 @@ class Name_Manager_Class(Data_Manager_Class):
         super().__init__(keywords)
 
     def is_capitalized(self, str):
+        # Checks if the first letter in a string is upper case.
 
         if str == "":
             return False
@@ -22,6 +23,9 @@ class Name_Manager_Class(Data_Manager_Class):
         return False
 
     def add_data(self, subarray, keyword):
+
+        # Finds two capitalized words in a string array and appends them together to create
+        # the name data. For example "Joe Brown".
 
         proper_noun = []
         word = ""

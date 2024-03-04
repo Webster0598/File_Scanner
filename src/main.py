@@ -10,13 +10,16 @@ from os.path import exists
 from src.utility.util import file_ending
 import web_browsing.web_browser as wb
 
+# Creates all the files paths
 script_dir = os.path.dirname(__file__)
 rel_path = "../sample_docs/doc_example.png"
 abs_file_path = os.path.join(script_dir, rel_path)
-path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
+# Pytesseract coverts images into text data.
+path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 pytesseract.tesseract_cmd = path_to_tesseract
 
+# Creates the all managers that will collect the data.
 date_keywords = ["Birth"]
 date_manager = Date_Manager_Class(date_keywords)
 
@@ -28,12 +31,16 @@ name_manager = Name_Manager_Class(name_keywords)
 
 managers = [phone_manager]
 
-def start(abs_file_path):
 
+def start(abs_file_path):
+    # Coverts image file into a string list
+
+    # Checks if file exist
     if exists(abs_file_path):
 
         ending = file_ending(abs_file_path)
 
+        # Coverts pdf into string list
         if ending == "pdf":
             text_list = pc.convert_pdf(abs_file_path)
             print(len(text_list))
@@ -41,7 +48,7 @@ def start(abs_file_path):
 
             text_data = sd.scan_doc(text_list[0], managers)
             print(text_data)
-
+        # Coverts png file into to string list
         elif ending == "png":
 
             print("png file ending")
@@ -55,19 +62,8 @@ def start(abs_file_path):
     else:
         print("Error: ", abs_file_path, " can not be found")
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
     # start(abs_file_path)
     # wb.read_login_date("login/login_data.txt")
     wb.start()
-
-
-
-
-
-
-
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
