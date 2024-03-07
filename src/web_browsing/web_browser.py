@@ -5,6 +5,7 @@ import os
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 def read_login_date(file_path):
 
@@ -77,5 +78,17 @@ def login():
     time.sleep(10)
     driver.quit()
 
+def connect_to_existing_browser():
+
+    # Launch in command line with these options
+    # chrome.exe --remote-debugging-port=9222 --user-data-dir="C:\selenum\ChromeProfile"
+
+    chrome_options = Options()
+    chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
+
+    driver = webdriver.Chrome(options=chrome_options)
+    print(driver.title)
+
+
 def start():
-    pass
+    connect_to_existing_browser()
