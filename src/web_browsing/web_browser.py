@@ -89,6 +89,17 @@ def connect_to_existing_browser():
     driver = webdriver.Chrome(options=chrome_options)
     print(driver.title)
 
+    return driver
+
+def wikipedia_search(driver, search_term):
+
+    search_input = driver.find_element(by=By.ID, value="searchInput")
+    search_input.send_keys(search_term)
+
+    search_form = driver.find_element(by=By.ID, value="search-form")
+    print(search_form)
+    search_form.submit()
 
 def start():
-    connect_to_existing_browser()
+    driver = connect_to_existing_browser()
+    wikipedia_search(driver, "Dog")
