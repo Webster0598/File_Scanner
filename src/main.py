@@ -39,22 +39,19 @@ def start(abs_file_path):
     if exists(abs_file_path):
 
         ending = file_ending(abs_file_path)
-
         # Coverts pdf into string list
         if ending == "pdf":
-            text_list = pc.convert_pdf(abs_file_path)
-            print(len(text_list))
-            print(text_list)
 
+            text_list = pc.convert_pdf(abs_file_path)
             text_data = sd.scan_doc(text_list[0], managers)
             print(text_data)
+
         # Coverts png file into to string list
         elif ending == "png":
 
-            print("png file ending")
             img = Image.open(abs_file_path)
             text = pytesseract.image_to_string(img)
-            print(text)
+            text_data = sd.scan_doc(text, managers)
 
         else:
             print("Error: Unknown file ending: ", ending)
@@ -64,6 +61,6 @@ def start(abs_file_path):
 
 if __name__ == '__main__':
 
-    # start(abs_file_path)
+    start(abs_file_path)
     # wb.read_login_date("login/login_data.txt")
-    wb.start()
+    # wb.start()

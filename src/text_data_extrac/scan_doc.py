@@ -70,6 +70,7 @@ def scan_doc(doc_text, managers):
                     kw = mag.keyword_match(word)
 
                     if kw:
+
                         # If a keyword is found then subsearch is started.
                         sub_search(i, 50, doc_text, mag, kw)
                         break

@@ -93,6 +93,11 @@ def connect_to_existing_browser():
 
 def wikipedia_search(driver, search_term):
 
+    # Goes to wikipedia and preforms a search with search_term
+
+    driver.get("https://www.wikipedia.org/")
+    wait = WebDriverWait(driver, 10)
+
     search_input = driver.find_element(by=By.ID, value="searchInput")
     search_input.send_keys(search_term)
 
@@ -100,6 +105,9 @@ def wikipedia_search(driver, search_term):
     print(search_form)
     search_form.submit()
 
+def practice_fusion_search():
+    pass
+
 def start():
     driver = connect_to_existing_browser()
-    wikipedia_search(driver, "Dog")
+    # wikipedia_search(driver, "Boat")

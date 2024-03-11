@@ -6,7 +6,10 @@ class Phone_Manager_Class(Data_Manager_Class):
     def __init__(self, keywords):
         super().__init__(keywords)
 
-        self.reg_exps = [r'\+\d\d\d\d\d\d\d\d\d\d\d', r'\d\d\d-\d\d\d\d-\d\d\d\d']
+        self.reg_exps = [r'\+\d\d\d\d\d\d\d\d\d\d\d',
+                         r'\d\d\d-\d\d\d\d-\d\d\d\d',
+                         r'(\d\d\d)\s\d\d\d-\d\d\d\d']
+
         self.max_phone_digits = 10
         self. extra_phone_char = ["(", ")", "-", "+"]
 
@@ -61,6 +64,7 @@ class Phone_Manager_Class(Data_Manager_Class):
 
         phoneNumRegex = re.compile(reg)
         match = phoneNumRegex.search(subarray)
+        print(subarray)
 
         if match:
             print('found', match.group())
