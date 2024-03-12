@@ -9,10 +9,11 @@ import src.utility.pdf_convertion as pc
 from os.path import exists
 from src.utility.util import file_ending
 import web_browsing.web_browser as wb
+import re
 
 # Creates all the files paths
 script_dir = os.path.dirname(__file__)
-rel_path = "../sample_docs/doc_example.png"
+rel_path = "../sample_docs/referral_form.pdf"
 abs_file_path = os.path.join(script_dir, rel_path)
 
 # Pytesseract coverts images into text data.
@@ -20,7 +21,7 @@ path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 pytesseract.tesseract_cmd = path_to_tesseract
 
 # Creates the all managers that will collect the data.
-date_keywords = ["Birth"]
+date_keywords = ["Birth", "D.O.B"]
 date_manager = Date_Manager_Class(date_keywords)
 
 phone_keywords = ["Phone", "Fax", "Telephone"]
@@ -29,7 +30,7 @@ phone_manager = Phone_Manager_Class(phone_keywords)
 name_keywords = ["Patient", "Physician"]
 name_manager = Name_Manager_Class(name_keywords)
 
-managers = [phone_manager]
+managers = [date_manager]
 
 
 def start(abs_file_path):
@@ -42,13 +43,17 @@ def start(abs_file_path):
         # Coverts pdf into string list
         if ending == "pdf":
 
+            print("Detected pfd file")
             text_list = pc.convert_pdf(abs_file_path)
-            text_data = sd.scan_doc(text_list[0], managers)
-            print(text_data)
+
+            for tex in text_list:
+
+                text_data = sd.scan_doc(tex, managers)
 
         # Coverts png file into to string list
         elif ending == "png":
 
+            print("Detected png file")
             img = Image.open(abs_file_path)
             text = pytesseract.image_to_string(img)
             text_data = sd.scan_doc(text, managers)

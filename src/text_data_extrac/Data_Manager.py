@@ -27,7 +27,7 @@ class Data_Manager_Class:
         print(self, "Warning: Calling abstract parent class function. Should be overriden by child class.")
         return False
 
-    def add_data(self, subarray, keyword):
+    def add_data(self, subarray):
         print(self, "Warning: Calling abstract parent class function. Should be overriden by child class.")
         pass
 

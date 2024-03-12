@@ -38,7 +38,7 @@ def sub_search(center_index, radius, text_array, manager, keyword):
     subarray = text_array[start:end]
 
     # Chosen manager will attempt to extract data from the subarray
-    manager.add_data(subarray, keyword)
+    manager.add_data(subarray)
 
 
 
