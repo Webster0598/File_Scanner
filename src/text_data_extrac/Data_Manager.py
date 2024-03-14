@@ -4,7 +4,6 @@ class Data_Manager_Class:
     # reduces redundant code.
     def __init__(self, keywords):
         self.keywords = keywords
-        self.data = []
 
     def keyword_match(self, word):
         # Checks if word matches the keywords associated with a data management class.
@@ -16,16 +15,6 @@ class Data_Manager_Class:
                 return k
 
         return None
-
-    def get_data(self):
-        return self.data
-
-    def clear_data(self):
-        self.data = []
-
-    def valid_data(self, arg):
-        print(self, "Warning: Calling abstract parent class function. Should be overriden by child class.")
-        return False
 
     def add_data(self, subarray):
         print(self, "Warning: Calling abstract parent class function. Should be overriden by child class.")

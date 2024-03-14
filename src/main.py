@@ -9,7 +9,6 @@ import src.utility.pdf_convertion as pc
 from os.path import exists
 from src.utility.util import file_ending
 import web_browsing.web_browser as wb
-import re
 
 # Creates all the files paths
 script_dir = os.path.dirname(__file__)
@@ -21,16 +20,16 @@ path_to_tesseract = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 pytesseract.tesseract_cmd = path_to_tesseract
 
 # Creates the all managers that will collect the data.
-date_keywords = ["Birth", "D.O.B"]
+date_keywords = ["Birth", "D.O.B", "Date"]
 date_manager = Date_Manager_Class(date_keywords)
 
 phone_keywords = ["Phone", "Fax", "Telephone"]
 phone_manager = Phone_Manager_Class(phone_keywords)
 
-name_keywords = ["Patient", "Physician"]
+name_keywords = ["Name"]
 name_manager = Name_Manager_Class(name_keywords)
 
-managers = [date_manager]
+managers = [name_manager]
 
 
 def start(abs_file_path):

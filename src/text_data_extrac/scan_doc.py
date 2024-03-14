@@ -25,7 +25,7 @@ def sub_search(center_index, radius, text_array, manager, keyword):
     # The radius value determines of large the search area is.
     # The center index determines the point search area should start in the text array.
 
-    start = center_index - radius
+    start = center_index
     end = center_index + radius
 
     # Ensures the search area remains within valid array boundaries.
@@ -83,10 +83,5 @@ def scan_doc(doc_text, managers):
         i += 1
 
     doc_data = []
-
-    # Goes through all the data collected by the different managers,
-    # then appends the data together to create the final output.
-    for mag in managers:
-        doc_data.append(mag.data)
 
     return doc_data
