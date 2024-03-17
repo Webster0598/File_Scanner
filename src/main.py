@@ -29,8 +29,22 @@ phone_manager = Phone_Manager_Class(phone_keywords)
 name_keywords = ["Name"]
 name_manager = Name_Manager_Class(name_keywords)
 
-managers = [name_manager]
+managers = [name_manager, date_manager]
 
+
+def combine_dict(dict_a, dict_b):
+
+    # Adds the data of dict_b into dict_a
+    # Assumes that dict_a and dict_b are
+    # dicts that use strings as keys and lists as values
+
+    for key, value in dict_b.items():
+
+        if key in dict_a:
+            dict_a[key] = dict_a[key] + dict_b[key]
+
+        else:
+            dict_a[key] = dict_b[key]
 
 def start(abs_file_path):
     # Coverts image file into a string list
@@ -44,18 +58,33 @@ def start(abs_file_path):
 
             print("Detected pfd file")
             text_list = pc.convert_pdf(abs_file_path)
+            final = None
 
             for tex in text_list:
 
                 text_data = sd.scan_doc(tex, managers)
 
+                if text_data:
+
+                    print("text_data", text_data)
+
+                    if final == None:
+                        final = text_data
+                        print("final", final)
+                    else:
+                        combine_dict(final, text_data)
+                        print("final", final)
+
         # Coverts png file into to string list
         elif ending == "png":
 
             print("Detected png file")
+
             img = Image.open(abs_file_path)
             text = pytesseract.image_to_string(img)
+
             text_data = sd.scan_doc(text, managers)
+            print(text_data)
 
         else:
             print("Error: Unknown file ending: ", ending)

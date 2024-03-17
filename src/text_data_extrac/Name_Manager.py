@@ -33,11 +33,13 @@ class Name_Manager_Class(Data_Manager_Class):
 
         names = name_pattern_regex.findall(subarray)
 
-        print()
-        print(names)
+        # print()
+        # print(names)
+
+        final = []
 
         for n in names:
             if self.is_text_a_person(n):
-                print(n, "is a person")
+                final.append(n)
 
-        return names
+        return final
