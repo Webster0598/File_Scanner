@@ -9,6 +9,7 @@ import src.utility.pdf_convertion as pc
 from os.path import exists
 from src.utility.util import file_ending
 import web_browsing.web_browser as wb
+import file_management.save_data as file_mag
 
 # Creates all the files paths
 script_dir = os.path.dirname(__file__)
@@ -29,7 +30,7 @@ phone_manager = Phone_Manager_Class(phone_keywords)
 name_keywords = ["Name"]
 name_manager = Name_Manager_Class(name_keywords)
 
-managers = [name_manager, date_manager]
+managers = [name_manager, date_manager, phone_manager]
 
 
 def combine_dict(dict_a, dict_b):
@@ -75,6 +76,8 @@ def start(abs_file_path):
                         combine_dict(final, text_data)
                         print("final", final)
 
+            return final
+
         # Coverts png file into to string list
         elif ending == "png":
 
@@ -86,6 +89,8 @@ def start(abs_file_path):
             text_data = sd.scan_doc(text, managers)
             print(text_data)
 
+            return text_data
+
         else:
             print("Error: Unknown file ending: ", ending)
 
@@ -94,6 +99,11 @@ def start(abs_file_path):
 
 if __name__ == '__main__':
 
-    start(abs_file_path)
+
+    doc_data = start(abs_file_path)
     # wb.read_login_date("login/login_data.txt")
     # wb.start()
+
+    data_path = "file_management/storage/doc_data"
+    file_mag.save(data_path, doc_data)
+    file_mag.open(data_path)
