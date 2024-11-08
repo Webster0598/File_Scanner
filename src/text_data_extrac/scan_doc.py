@@ -19,13 +19,13 @@ def contains_numbers(str):
 
     return False
 
-def sub_search(center_index, radius, text_array, manager, keyword):
+def sub_search(center_index, radius, text_array, manager):
 
     # Preforms search on a smaller part of the text array.
     # The radius value determines of large the search area is.
     # The center index determines the point search area should start in the text array.
 
-    start = center_index - radius
+    start = center_index
     end = center_index + radius
 
     # Ensures the search area remains within valid array boundaries.
@@ -38,7 +38,12 @@ def sub_search(center_index, radius, text_array, manager, keyword):
     subarray = text_array[start:end]
 
     # Chosen manager will attempt to extract data from the subarray
-    manager.add_data(subarray, keyword)
+    result = manager.add_data(subarray)
+
+    if result:
+        return result
+
+    return None
 
 
 
@@ -50,6 +55,7 @@ def scan_doc(doc_text, managers):
     # The appropriate manager will look through this subarray for any data that is related
     # to that manager and save it.
 
+    doc_data = {}
     word = ""
     i = 0
 
@@ -72,7 +78,17 @@ def scan_doc(doc_text, managers):
                     if kw:
 
                         # If a keyword is found then subsearch is started.
-                        sub_search(i, 50, doc_text, mag, kw)
+                        sub_result = sub_search(i, 50, doc_text, mag)
+
+                        if sub_result:
+
+                            if kw in doc_data:
+                                doc_data[kw] = doc_data[kw] + sub_result
+
+                            else:
+                                doc_data[kw] = sub_result
+
+
                         break
 
                 word = ""
@@ -82,11 +98,6 @@ def scan_doc(doc_text, managers):
 
         i += 1
 
-    doc_data = []
 
-    # Goes through all the data collected by the different managers,
-    # then appends the data together to create the final output.
-    for mag in managers:
-        doc_data.append(mag.data)
 
     return doc_data

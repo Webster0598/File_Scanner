@@ -1,67 +1,45 @@
 from src.text_data_extrac.Data_Manager import Data_Manager_Class
-# import enchant
-# import nltk
-# from nltk.tag.stanford import StanfordNERTagger
-
-# nltk.download('popular') Installs datasets/models for nltk to work.
-# Only needs to be runs once. Probably should be ran from command line instead of code.
+import re
+import spacy
 
 class Name_Manager_Class(Data_Manager_Class):
 
     def __init__(self, keywords):
         super().__init__(keywords)
 
-    def is_capitalized(self, str):
-        # Checks if the first letter in a string is upper case.
+        # Load the English language model
+        self.nlp = spacy.load("en_core_web_sm")
 
-        if str == "":
-            return False
+    def is_text_a_person(self, text):
 
-        if str[0].isupper():
-            return True
+        # Process the text with SpaCy
+        doc = self.nlp(text)
+
+        for ent in doc.ents:
+
+            if ent.label_ == "PERSON":
+                return True
 
         return False
 
-    def add_data(self, subarray, keyword):
+    def add_data(self, subarray):
 
-        # Finds two capitalized words in a string array and appends them together to create
-        # the name data. For example "Joe Brown".
+        chuck_1 = "[A-Z]"
+        chuck_2 = "[a-z]+"
+        chuck_3 = "\s"
 
-        proper_noun = []
-        word = ""
-        count = 0
-        keyword_index = -1
+        name_pattern = f"{chuck_1}{chuck_2}{chuck_3}{chuck_1}{chuck_2}"
+        name_pattern_regex = re.compile(name_pattern)
 
-        # print(subarray)
-        for s in subarray:
+        names = name_pattern_regex.findall(subarray)
 
-            if s == " ":
+        # print()
+        # print(names)
 
-                if self.is_capitalized(word):
-                    proper_noun.append(word)
-                    count += 1
+        final = []
 
-                    if self.keyword_match(word):
-                        keyword_index = count - 1
+        for n in names:
+            if self.is_text_a_person(n):
+                final.append(n)
 
-
-                word = ""
-
-            else:
-
-                if s.isalpha():
-                    word += s
-
-        if self.is_capitalized(word):
-            proper_noun.append(word)
-
-        # print(proper_noun, "keyword_index", keyword_index)
-
-        name = proper_noun[keyword_index + 1] + " " + proper_noun[keyword_index + 2]
-
-        # print("Name: ", name)
-
-        self.data.append({keyword : name})
-
-
-
+        return final
