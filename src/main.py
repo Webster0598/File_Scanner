@@ -9,6 +9,7 @@ import src.utility.pdf_convertion as pc
 from os.path import exists
 from src.utility.util import file_ending
 import web_browsing.web_browser as wb
+import auto_inputs.keyboard_mouse_auto as auto
 
 # Creates all the files paths
 script_dir = os.path.dirname(__file__)
@@ -61,6 +62,7 @@ def start(abs_file_path):
 
 if __name__ == '__main__':
 
-    start(abs_file_path)
+    # start(abs_file_path)
     # wb.read_login_date("login/login_data.txt")
     # wb.start()
+    auto.start()
